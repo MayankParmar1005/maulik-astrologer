@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — Maulik Astrology
+   Dark navy + gold OKLCH palette
+   ============================================================ */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Base dark backgrounds */
+    --background: 0.09 0.02 240;
+    --foreground: 0.93 0.01 240;
+
+    /* Card surfaces */
+    --card: 0.12 0.025 240;
+    --card-foreground: 0.93 0.01 240;
+
+    /* Popovers */
+    --popover: 0.14 0.025 240;
+    --popover-foreground: 0.93 0.01 240;
+
+    /* Primary — gold */
+    --primary: 0.73 0.13 85;
+    --primary-foreground: 0.1 0.02 240;
+
+    /* Secondary — slightly lighter dark */
+    --secondary: 0.16 0.025 240;
+    --secondary-foreground: 0.85 0.02 240;
+
+    /* Muted */
+    --muted: 0.15 0.02 240;
+    --muted-foreground: 0.62 0.03 240;
+
+    /* Accent — bright gold */
+    --accent: 0.76 0.14 85;
+    --accent-foreground: 0.1 0.02 240;
+
+    /* Destructive */
+    --destructive: 0.65 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    /* Borders & inputs */
+    --border: 0.2 0.025 240;
+    --input: 0.18 0.025 240;
+    --ring: 0.73 0.13 85;
+
+    /* Charts */
+    --chart-1: 0.73 0.13 85;
+    --chart-2: 0.72 0.2 140;
+    --chart-3: 0.75 0.18 280;
+    --chart-4: 0.7 0.2 55;
+    --chart-5: 0.65 0.22 25;
+
+    /* Sidebar */
+    --sidebar: 0.12 0.025 240;
+    --sidebar-foreground: 0.93 0.01 240;
+    --sidebar-primary: 0.73 0.13 85;
+    --sidebar-primary-foreground: 0.1 0.02 240;
+    --sidebar-accent: 0.16 0.025 240;
+    --sidebar-accent-foreground: 0.85 0.02 240;
+    --sidebar-border: 0.2 0.025 240;
+    --sidebar-ring: 0.73 0.13 85;
+
+    /* Custom tokens */
+    --gold: oklch(0.73 0.13 85);
+    --gold-bright: oklch(0.76 0.14 85);
+    --gold-dim: oklch(0.58 0.1 85);
+    --gold-glow: oklch(0.73 0.13 85 / 0.18);
+    --gold-border: oklch(0.73 0.13 85 / 0.35);
+    --navy-1: oklch(0.09 0.02 240);
+    --navy-2: oklch(0.12 0.025 240);
+    --navy-3: oklch(0.16 0.025 240);
+    --text-muted: oklch(0.62 0.03 240);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes navUnderlineIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", serif;
+  }
+  .font-body {
+    font-family: "Inter", sans-serif;
+  }
+
+  /* Gold text */
+  .text-gold {
+    color: var(--gold);
+  }
+
+  /* Gradient gold text */
+  .gradient-gold {
+    background: linear-gradient(135deg, oklch(0.76 0.14 85), oklch(0.62 0.1 85));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold card border — glassmorphism premium */
+  .card-gold {
+    border: 1px solid var(--gold-border);
+    background: oklch(0.12 0.025 240 / 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 24px oklch(0 0 0 / 0.4), inset 0 1px 0
+      oklch(0.73 0.13 85 / 0.08);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s
+      ease;
+  }
+  .card-gold:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px oklch(0.73 0.13 85 / 0.25), 0 8px 48px
+      oklch(0.73 0.13 85 / 0.15), 0 4px 24px oklch(0 0 0 / 0.4);
+  }
+
+  /* Premium CTA button */
+  .btn-gold-premium {
+    letter-spacing: 0.12em;
+    padding: 0.875rem 2.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    background: oklch(0.73 0.13 85);
+    color: oklch(0.1 0.02 240);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .btn-gold-premium:hover {
+    box-shadow: 0 0 24px oklch(0.73 0.13 85 / 0.45), inset 0 1px 0
+      oklch(1 0 0 / 0.15);
+    transform: translateY(-1px);
+  }
+
+  /* Nav active underline */
+  .nav-link-active {
+    position: relative;
+  }
+  .nav-link-active::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gold);
+    animation: navUnderlineIn 0.25s ease forwards;
+    transform-origin: left;
+  }
+
+  /* Zodiac decorative text */
+  .zodiac-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  .zodiac-bg::before {
+    content: "♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓";
+    position: absolute;
+    inset: 0;
+    font-size: 4rem;
+    line-height: 1.8;
+    word-spacing: 1.5rem;
+    color: oklch(0.73 0.13 85 / 0.03);
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    letter-spacing: 1.5rem;
+  }
+
+  /* Section divider */
+  .gold-divider {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold-border),
+      transparent
+    );
+    height: 1px;
+    border: none;
+  }
+
+  /* Stars animation */
+  .star-field {
+    background-image: radial-gradient(
+        ellipse 80% 60% at 50% 0%,
+        oklch(0.35 0.08 260 / 0.4) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 20% 100%,
+        oklch(0.25 0.06 260 / 0.2) 0%,
+        transparent 60%
+      ),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Ccircle cx='50' cy='80' r='1' fill='white' opacity='0.6'/%3E%3Ccircle cx='150' cy='30' r='0.8' fill='white' opacity='0.4'/%3E%3Ccircle cx='300' cy='120' r='1.2' fill='white' opacity='0.7'/%3E%3Ccircle cx='450' cy='50' r='0.6' fill='white' opacity='0.3'/%3E%3Ccircle cx='520' cy='200' r='1' fill='white' opacity='0.5'/%3E%3Ccircle cx='80' cy='250' r='0.8' fill='white' opacity='0.4'/%3E%3Ccircle cx='200' cy='320' r='1.4' fill='white' opacity='0.6'/%3E%3Ccircle cx='380' cy='280' r='0.6' fill='white' opacity='0.3'/%3E%3Ccircle cx='480' cy='350' r='1' fill='white' opacity='0.5'/%3E%3Ccircle cx='100' cy='420' r='1.2' fill='white' opacity='0.4'/%3E%3Ccircle cx='250' cy='480' r='0.8' fill='white' opacity='0.6'/%3E%3Ccircle cx='420' cy='440' r='1' fill='white' opacity='0.3'/%3E%3Ccircle cx='560' cy='500' r='0.6' fill='white' opacity='0.5'/%3E%3Ccircle cx='30' cy='550' r='1' fill='white' opacity='0.4'/%3E%3Ccircle cx='330' cy='560' r='1.2' fill='white' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: cover, cover, 600px 600px;
+  }
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.09 0.02 240);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.22 0.03 240);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.73 0.13 85 / 0.5);
+}
+
+/* ============================================================
+   FOCUS
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
